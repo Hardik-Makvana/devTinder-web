@@ -8,8 +8,8 @@ import { BASE_URL } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 
 const Body = () => {
-  const dispacth = useDispatch();
-  const navigate = useNavigate;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
 
   const getUser = async () => {
@@ -19,9 +19,9 @@ const Body = () => {
         withCredentials: true,
       });
 
-      dispacth(addUser(res.data));
+      dispatch(addUser(res.data));
     } catch (err) {
-      if (err.status === 401) {
+      if (err.response?.status === 401) {
         navigate("/login");
       }
       console.error(err);
