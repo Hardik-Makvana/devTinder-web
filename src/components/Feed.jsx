@@ -11,7 +11,7 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    if (feed) return;
+    if (feed !== null) return;
 
     try {
       const res = await axios.get(BASE_URL + "/feed", {
@@ -20,7 +20,7 @@ const Feed = () => {
 
       // console.log("FEED API CALLED", res.data);
 
-      dispatch(addFeed(res.data));
+      dispatch(addFeed(res.data.data));
     } catch (err) {
       console.error(err);
     }
@@ -28,15 +28,19 @@ const Feed = () => {
 
   useEffect(() => {
     getFeed();
-  }, []);
+  }, [dispatch]);
+
+  if (!feed) return <h2>Loading...</h2>;
+
+  if (feed.length === 0) {
+    return <h2>No users available</h2>;
+  }
 
   return (
-    feed && (
-      <div className="flex justify-center my-10">
-        <UserCard user={feed.data[0]} />
-      </div>
-    )
-  ); 
+    <div className="flex justify-center my-10">
+      <UserCard user={feed[0]} />
+    </div>
+  );
 };
 
 export default Feed;
