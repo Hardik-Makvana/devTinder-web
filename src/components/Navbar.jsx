@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
+import { clearFeed } from "../utils/feedSlice";
 import Connections from "./Connections";
 
 const Navbar = () => {
@@ -21,8 +22,9 @@ const Navbar = () => {
         },
       );
       dispatch(removeUser());
+      dispatch(clearFeed());
       // return navigate("/");
-       navigate("/login", { replace: true });
+      navigate("/login", { replace: true });
     } catch (err) {
       console.error(err);
     }
@@ -62,6 +64,9 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to="/requests">Requests</Link>
+              </li>
+              <li>
+                <Link to="/">Feed</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

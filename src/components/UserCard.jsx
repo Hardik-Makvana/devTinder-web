@@ -4,7 +4,6 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
-
 const UserCard = ({ user }) => {
   const { firstName, lastName, photoUrl, age, gender, about } = user;
   const userId = user?._id;
@@ -23,13 +22,7 @@ const UserCard = ({ user }) => {
     }
   };
 
- 
 
-  const handleAnimationComplete = () => {
-    if (action) {
-      handleSendRequest(action);
-    }
-  };
 
   return (
     <div className="card bg-base-300 w-96 shadow-sm">

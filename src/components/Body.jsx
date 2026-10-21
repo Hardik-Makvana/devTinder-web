@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { addUser, removeUser } from "../utils/userSlice"
+import { addUser, removeUser } from "../utils/userSlice";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,11 @@ import { BASE_URL } from "../utils/constants";
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const[Loading , setLoading] = useState(true);
+  
   const userData = useSelector((store) => store.user);
 
   const getUser = async () => {
-    if (userData) return;
     try {
       const res = await axios.get(BASE_URL + "/profile/view", {
         withCredentials: true,
@@ -21,19 +22,21 @@ const Body = () => {
 
       dispatch(addUser(res.data));
     } catch (err) {
-      if (err.response?.status === 401) {
-        dispatch(removeUser());
-        navigate("/login", { replace: true });
-        return;
-      }
+      dispatch(removeUser());
 
-      console.error(err);
+      if (err.response?.status === 401) {
+        navigate("/login", { replace: true });
+      } else {
+        console.error("Failed to fetch user:", err);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [dispatch, navigate]);
 
   return (
     <div>

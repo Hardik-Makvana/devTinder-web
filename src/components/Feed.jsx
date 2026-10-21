@@ -7,7 +7,7 @@ import UserCard from "./userCard";
 
 const Feed = () => {
   const feed = useSelector((store) => store.feed);
-  console.log(feed);
+  
   const dispatch = useDispatch();
 
   const getFeed = async () => {
@@ -18,8 +18,6 @@ const Feed = () => {
         withCredentials: true,
       });
 
-      // console.log("FEED API CALLED", res.data);
-
       dispatch(addFeed(res.data.data));
     } catch (err) {
       console.error(err);
@@ -28,9 +26,9 @@ const Feed = () => {
 
   useEffect(() => {
     getFeed();
-  }, [dispatch]);
+  }, [dispatch , feed]);
 
-  if (!feed) return <h2>Loading...</h2>;
+  if (feed == null ) return <h2>Loading...</h2>;
 
   if (feed.length === 0) {
     return <h2>No users available</h2>;
@@ -44,3 +42,4 @@ const Feed = () => {
 };
 
 export default Feed;
+

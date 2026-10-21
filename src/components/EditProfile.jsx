@@ -26,7 +26,7 @@ const EditProfile = ({ user }) => {
         BASE_URL + "/profile/edit",
         {
           firstName,
-          lastName,
+          lastName, 
           about,
           age,
           gender,

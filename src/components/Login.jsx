@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("hardikmakvana3012@gmail.com");
-  const [password, setPassword] = useState("Hardik@3012");
+  const [email, setEmail] = useState("@gmail.com");
+  const [password, setPassword] = useState("Test@12345");
   const [error, setError] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -84,10 +84,10 @@ const Login = () => {
             <Link
               to="/signup"
               className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl
-    border-2 border-primary text-primary font-semibold
-    hover:bg-primary hover:text-primary-content
-    hover:shadow-lg hover:scale-[1.02]
-    transition-all duration-300"
+              border-2 border-primary text-primary font-semibold
+              hover:bg-primary hover:text-primary-content
+              hover:shadow-lg hover:scale-[1.02]
+              transition-all duration-300"
             >
               <span>Create Account</span>
               <span>→</span>

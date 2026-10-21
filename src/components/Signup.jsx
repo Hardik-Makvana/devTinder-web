@@ -94,7 +94,7 @@ const Signup = () => {
               className="btn btn-primary w-full rounded-xl text-base shadow-md hover:scale-[1.02] transition-transform"
               onClick={handleSignUp}
             >
-              Login
+              SignUp
             </button>
           </div>
         </div>
