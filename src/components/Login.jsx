@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("@gmail.com");
+  const [email, setEmail] = useState("virat.kohli@example.com");
   const [password, setPassword] = useState("Test@12345");
   const [error, setError] = useState();
   const dispatch = useDispatch();
